@@ -27,3 +27,7 @@ cl <- colorRampPalette (c("black", "grey", "light grey")) (100)
 plot (p224r63_2011, col=cl)
 #la funzione ha due argomenti: l'immagine che voglio plottare e il colore che voglio dare alle bande (argomento colore = col = alla mia palette)
 
+#dev.off() -> serve per disattivare l'interfaccia grafica, cancella quelle aperte
+
+cl1 <- colorRampPalette (c("blue","red", "yellow", "green", "dark green")) (100)
+plot (p224r63_2011, col=cl1)
