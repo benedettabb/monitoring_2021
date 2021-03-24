@@ -1,6 +1,6 @@
 # My first code in R for remote sensing!!
 install.packages("raster")
-#installo il pacchetto esterno raster. quando il pacchetto è esterno devo utilizzare le virgolette
+#installo il pacchetto esterno raster. quando il pacchetto è esterno devo utilizzare le virgolette!!!!!
 
 setwd("C:/lab/") # Windows
 #apro la cartella che ho creato su C: (cartella senza maiuscole perchè R è case sensitive)
@@ -13,7 +13,7 @@ p224r63_2011
 #richiamando l'oggetto ne posso vedere le specifiche (dimensione, risoluzione, estensione ecc.)
 
 plot (p224r63_2011)
-# visualizzo le diverse bande di acquisizione dell'immagine -> B1 = rosso, B2= verde, B3 = rosso, B4 = infrarosso, B5 = infrarosso medio, B6 = infrarosso termico, B7= infrarosso ?
+# visualizzo le diverse bande di acquisizione dell'immagine 
 # a destra ho i valori di riflettanza (luce incidente/luce riflessa -> da 0 a 1)
 
 cl <- colorRampPalette (c("black", "grey", "light grey")) (100)
@@ -31,3 +31,57 @@ plot (p224r63_2011, col=cl)
 
 cl1 <- colorRampPalette (c("blue","red", "yellow", "green", "dark green")) (100)
 plot (p224r63_2011, col=cl1)
+
+#BANDE LANDSAT --> B1_sre (SpectralREflectance)
+#B1=banda blu; 
+#B2=banda verde; 
+#B3=banda rosso; 
+#B4=infrarosso vicino; 
+#B5=infrarosso medio;
+#B6=infrarosso termico;
+#B7=infrarosso medio.
+
+#dev.of() ripulisce la finestra grafica /clean the curren graph
+dev.of()
+#$ questo simbolo è sempre usato in R per legare due blocchi - llo utilizzo per legare l'immagine generale alla banda 1
+#utilizzo la funzione plot
+plot (p224r63_2011$B1_sre)
+
+#ora plotto la banda 1 con una scala di colori scelta
+plot (p224r63_2011$B1_sre, col=cl1) 
+
+#multiframe (mf) = visualizzo le due bande una accanto all'altra)
+#per farlo utilizzo la funzione par()
+#voglio anche una riga e due colone -- par(mfrow= c(1,2))
+#il vettore o array è una serie di caratteri nel linguaggio informatico - si indica con c
+
+#par mi fa decidere come voglio fare il plottaggio
+par (mfrow=c(1,2))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+
+#ora faccio 2 righe e 1 colonna
+par(mfrow=c(2,1))
+plot(p224r63_2011$B1_sre)
+plot(p224r63_2011$B2_sre)
+
+par(mfrow=c(2,1))
+plot(p224r63_2011$B1_sre, col=cl1)
+plot(p224r63_2011$B2_sre, col=cl1)
+
+#posso anche scegliere di avere prima le colonne e poi le righe
+par(mfcol=c(2,1))
+plot(p224r63_2011$B1_sre, col=cl1)
+plot(p224r63_2011$B2_sre, col=cl1)
+
+#ora associo ogni banda ad una colorRampPalette che me la ricorda. Creo le palette
+clB <- colorRampPalette(c("dark blue","blue","light blue"))(100)
+clG <- colorRampPalette(c("dark green","green","light green"))(100)
+clR <- colorRampPalette(c("dark red","red","pink"))(100)
+clNIR <- colorRampPalette(c("red","orange","yellow"))(100)
+
+par(mfrow=c(2,2))
+plot(p224r63_2011$B1_sre, col=clB)
+plot(p224r63_2011$B2_sre, col=clG)
+plot(p224r63_2011$B3_sre, col=clR)
+plot(p224r63_2011$B4_sre, col=clNIR)
