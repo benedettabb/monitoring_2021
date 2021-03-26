@@ -85,3 +85,38 @@ plot(p224r63_2011$B1_sre, col=clB)
 plot(p224r63_2011$B2_sre, col=clG)
 plot(p224r63_2011$B3_sre, col=clR)
 plot(p224r63_2011$B4_sre, col=clNIR)
+
+#visualizzo l'immagine in RGB
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") #immagine in true colour
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin") #immagine a falsi colori
+#con la funzione stretch redistribuisco i valori in maniera lineare per visualizzarli meglio
+#r g b sono integer!! posso anche non inserirli perchè il comando è stato pensato così
+
+par(mfrow=c(2,2))
+> plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+> plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+> plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+> plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+
+
+#ora creo un pdf - richiamo la funzione pdf
+pdf("il_mio_pdf") #può avere il nome che vuoi!
+par(mfrow=c(2,2)) #copi tutto
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
+dev.off() #a questo punto il pdf è creato nella cartella
+
+
+#posso provare anche stretch diversi
+#provo stretch histagram
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
+
+# par natural colours, flase colours, and false colours with histogram stretching
+par(mfrow=c(3,1))
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
+#questo mi permette di andare a visualizzare situazioni di diversità all'interno della stessa vegetazione, anche dove tutto sembra omogeneo
+
