@@ -120,3 +120,9 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 #questo mi permette di andare a visualizzare situazioni di diversità all'interno della stessa vegetazione, anche dove tutto sembra omogeneo
 
+
+#COLORIST - metto tre immagini nelle tre bande in tempi diversi, ad esempio un'immagine di gennario nel R, di maggio nel V, di dicembre in B
+#a seconda che l'immagine diventa più r v oppure b posso campire quando quella vegetazione è più sviluppata.
+
+#PCA analisi delle componenti principali
+
