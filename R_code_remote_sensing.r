@@ -115,7 +115,7 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 
 # par natural colours, flase colours, and false colours with histogram stretching
 par(mfrow=c(3,1))
-plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
+plotRGB(p224r63_1988, 4,3,2, stretch= "Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 #questo mi permette di andare a visualizzare situazioni di diversità all'interno della stessa vegetazione, anche dove tutto sembra omogeneo
@@ -125,4 +125,23 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 #a seconda che l'immagine diventa più r v oppure b posso campire quando quella vegetazione è più sviluppata.
 
 #PCA analisi delle componenti principali
+
+#multitemporal set
+#non c'è bisogno di ricominciare ma lo faccio per chiarezza
+setwd("C:/lab/")
+p224r63_2011 <- brick("p224r63_2011_masked.grd")
+p224r63_1988 <- brick("p224r63_1988_masked.grd")
+
+#creo un pdf con le due immagini in due stretch diversi
+pdf("multitemp.pdf")
+par(mfrow=c(2,2))
+plotRGB(p224r63_1988, 4,3,2, stretch= "Lin")
+plotRGB(p224r63_2011, 4,3,2, stretch= "Lin")
+plotRGB(p224r63_1988, 4,3,2, stretch= "hist")
+plotRGB(p224r63_2011, 4,3,2, stretch= "hist")
+dev.off()
+
+
+
+
 
