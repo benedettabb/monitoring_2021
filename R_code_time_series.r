@@ -33,6 +33,9 @@ plot (lst_2015)
 #creo una lista - il pattern è ciò che gli elementi hanno in comune
 rlist <- list.files (pattern= "lst")
 rlist
+#unisco i file tutti insieme
+TGr <- stack(import)
+
 
 #aaplico la funzione lapply (alla listaX, raster). lapply è una funzione che mi permette di applicare una funzione ad una lista
 import <- lapply (rlist, raster)
