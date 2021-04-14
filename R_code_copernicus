@@ -15,3 +15,18 @@ setwd ("C:/Users/UTENTE/Desktop/UNIBO/GEOGRAFIA/II ANNO/TELE_ECO_GEO/surface_moi
 #ecco il mio dato!
 LST <- raster ("c_gls_LST10-DC_202104010000_GLOBE_GEO_V2.0.1.nc")
 
+
+#definisco la color rampe palette
+cl <- colorRampPalette(c('light blue','green','yellow','orange', 'red'))(100)
+
+#visualizzo il mio dataset!!
+plot (LST, col=cl)
+
+#ricampiono il dato per creare pixel più grandi, in modo da essere più veloce.
+#diminuisco di 10 volte - ogni 10 pixel ho un nuovo pixel. quindi faccio in realtà la media di 10x10 _ 100 valori
+LST_res <- aggregate (LST, fact=10)
+
+#controllo quanti pixel ho
+LST_res
+
+plot (LST_res, col=cl)
