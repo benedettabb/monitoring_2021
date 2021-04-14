@@ -1,0 +1,17 @@
+#copernicus LST 
+#01/04/21 - 10/04/21
+
+
+#mi serve la libreria per leggere i file nc - pacchetto ncdf
+install.packages("ncdf4")
+
+#richiamo i pacchetti che mi servono
+library(raster)
+library (ncdf4)
+
+#imposto la working directory
+setwd ("C:/Users/UTENTE/Desktop/UNIBO/GEOGRAFIA/II ANNO/TELE_ECO_GEO/surface_moisture")
+
+#ecco il mio dato!
+LST <- raster ("c_gls_LST10-DC_202104010000_GLOBE_GEO_V2.0.1.nc")
+
