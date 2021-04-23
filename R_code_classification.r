@@ -25,3 +25,25 @@ set.seed(42)
 
 #proviamo con un numero di classi molto alto
 so_c20 <- unsuperClass (so, nClasses = 20)
+
+
+
+#-------------------------------------------------------------------------------------#
+
+library(raster)
+#libreria essenziale per la classificazione e l'analisi multivariata
+library(RStoolbox)
+
+setwd ("C:/lab/canyon")
+gc <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
+
+plotRGB(gc,1,2,3, stretch="lin")
+
+#classificazione non supervisionata con due classi
+gcc2<-unsuperClass(gc,nClasses=2)
+
+#faccio il plot, legando la classificazione alla mappa
+plot(gcc2$map)
+set.seed(42)
+
+
