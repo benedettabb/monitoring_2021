@@ -23,8 +23,10 @@ pairs(land2011)
 #lineare positiva, -1 correlazione perfettamente negativa, 0 non sono correlati. indice di correlazione di Pearson
 
 #con la PCA creo un'immagine con lo stesso numero di bande, ma disposte diversamente nello spazio multispettrale 
-#ottengo di spiegare la variabilità con le prime bande di un'immagine. questo è utile quando ho bande che sono molto correlate tra loro.
-#si passa un nuovo asse lungo la varibilità maggiore, ed un nuovo asse lungo la variabilità minore. questo viene fatto nello spazio multi-spettrale con tante bande
+#ottengo di spiegare la variabilità con le prime bande di un'immagine.
+#si passa un nuovo asse lungo la varibilità maggiore, ed un nuovo asse lungo la variabilità minore. La prima componente viene fatta passare lungo la varibilità
+#maggiore. Questo viene fatto nello spazio multi-spettrale con tante bande. le bande non sono più correlate tra di loro.
+#Se ho una correlazione lineare e le variabili sono molto correlate posso aver bisogno di fare un'analisi multivariata. 
 
 #la PCA è molto impattante come analisi. prima è più utile ricampionare le diverse bande con raster aggregate - aggrego i pixel facendo una media, creo coì
 #un'immagine con risoluzione più bassa
@@ -50,11 +52,19 @@ summary (land2011_res_PCA$model)
 #ma già con le prime tre componenti spiego il 99.998% - quindi è già sufficiente
 #con plot vedo questa situazione (lego il risultato alla sua mappa)
 plot(land2011_res_PCA$map)
-#la prima componente vede tanta variabilità, distigue molte cose. l'ultima non vede praticamente nulla.
+#la prima componente vede tanta variabilità, distigue molte cose. l'ultima non vede praticamente nulla, solo rumore.
 
 #chimando la variabile vedo tutto quello che c'è dentro
 land2011_res_PCA
 
+#vedo che call, model e map sono legate all'oggetto land2011_res_PCA che ho appena chiamato
+#facciamo un plot RGB con le prime tre componenti principali
+plotRGB (land2011_res_PCA$map, r=1, g=2, b=3, stretch="lin")
 
+#plottiamo la prima componente contro la seconda per vedere se c'è correlazione tra di loro - non sono correlate tra loro
+plot (land2011_res_PCA$map$PC1, land2011_res_PCA$map$PC2)
+
+#con str ottengo molte info in più
+str(land2011_PCA)
 
 
