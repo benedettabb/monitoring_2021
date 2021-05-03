@@ -63,5 +63,9 @@ plot(NDVI2, col=cl, main="NDVI at time 1")
 
 
 #su RStoolbox ci sono già tanti indici già pronti
+library(RStoolbox)
+vi1 <- spectralIndices (defor1, green=3, red=2, nir=1)
+plot(vi1, col=cl)
 
-
+vi2 <- spectralIndices (defor2, green=3, red=2, nir=1)
+plot(vi2, col=cl)
