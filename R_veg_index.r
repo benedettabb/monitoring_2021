@@ -1,5 +1,10 @@
 #carico le librerie necessarie
 library (raster)
+library(RStoolbox)
+#carico il pacchetto di Duccio per la diversità degli eterosistemi
+library(rasterdiv)
+library(rasterVis)
+
 
 #definisco la working directory
 setwd ("C:/lab/defor")
@@ -63,9 +68,20 @@ plot(NDVI2, col=cl, main="NDVI at time 1")
 
 
 #su RStoolbox ci sono già tanti indici già pronti
-library(RStoolbox)
 vi1 <- spectralIndices (defor1, green=3, red=2, nir=1)
 plot(vi1, col=cl)
 
 vi2 <- spectralIndices (defor2, green=3, red=2, nir=1)
 plot(vi2, col=cl)
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------
+#proviamo il pacchetto rasterdiv
+plot(copNDVI)
+
+#cbind è una funzione che cambia dei valori - trasformo i valori 253, 254, 255 (water) in NA (not assigned)
+#raster:: si mette per indicare al lettore da dove proviene la funzione - non è necessario ma utile
+copNDVI <- raster:: reclassify(copNDVI, cbind (553:255, NA))
+plot(copNDVI)
+
+#da rasterVis che non funziona
+levelplot(copNDVI)
