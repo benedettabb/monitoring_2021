@@ -17,3 +17,9 @@ p2 <- ggRGB(defor2, r=1, g=2, b=3, stretch ="lin")
 
 #multiframe con ggplot e gridExtra (plot1, plot2, numero righe)
 grid.arrange(p1, p2, nrow= 2)
+
+#classificazione non sup che prende un campione random di pixel (10 000)
+#foresta
+#agricolo
+#acqua
+d1c <-unsuperClass (defor1, nClasses =3)
