@@ -41,3 +41,15 @@ plot(ndvi_sd3, col=clsd)
 #invece della dev.standard calcolo la media
 mean_sd3 <- focal (ndvi, w=matrix (1/9, nrow=3, ncol=3), fun=mean)
 plot(mean_sd3, col=clsd)
+
+#posso anche calcolare la prima componente principale - prendiamo un sistema a multi bande, ne calcoliamo una pca, e usiamo solo la prima componente principale
+#così ottengo un solo strato
+#e poi faccio passare la moving window su quello strato 
+#uso la funzione raster cps di RStoolboox
+sentPCA <- rasterPCA (sent)
+sentPCA
+#vedo le 4 componenti principali
+plot(sentPCA$map)
+#meglio...
+summary (sentPCA$model)
+#la prima componente spiega il 77.33% 
