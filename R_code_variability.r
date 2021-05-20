@@ -17,3 +17,27 @@ plotRGB(sent, r= 2, g = 1, b = 3, stretch="lin")
 
 #per il calcolo della dev standard usiamo una sola banda e utilizziamo la moving window
 #maggiore è la dev stand maggiore è l'eterogeneità di un sistema
+
+#calcolo dell'NDVI per ottenere un singolo strato
+nir <- sent$sentinel.1
+red <-sent$sentinel.2
+ndvi <- (nir-red) / (nir+red)
+ndvi
+plot(ndvi) #in verde ho i valori alti di ndvi e in rosa quelli bassi
+
+#cambio la color rampe palette
+cl <- colorRampPalette(c('black','white','red','magenta','green'))(100) # 
+plot(ndvi,col=cl)
+
+#ora possiamo calcolare la variabilità dell'immagine con la funzione focal
+#focal values dal pacchetto raster
+ndvi_sd3 <- focal (ndvi, w=matrix (1/9, nrow=3, ncol=3), fun=sd)
+#w è la finestra. solitamente è meglio farla quadrata. più grande è la finestra più lungo è il calcolo. 
+#1/9 vuol dire che si considera ogni signolo pixel su 9. La funzione è la deviazione standard
+#cambio la color rampe palette
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) #
+plot(ndvi_sd3, col=clsd)
+
+#invece della dev.standard calcolo la media
+mean_sd3 <- focal (ndvi, w=matrix (1/9, nrow=3, ncol=3), fun=mean)
+plot(mean_sd3, col=clsd)
